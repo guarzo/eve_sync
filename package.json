@@ -12,7 +12,9 @@
     "appId": "com.github.gambtho.eve_sync",
     "files": [
       "main.js",
-      "static/**/*",
+      "*.js",
+      "*.html",
+      "*.css",
       "node_modules/**/*"
     ],
     "win": {
@@ -31,7 +33,7 @@
     "email": "thomasgamble2@gmail.com"
   },
   "license": "ISC",
-  "description": "",
+  "description": "Eve Settings Sync",
   "devDependencies": {
     "electron": "^33.0.1",
     "electron-builder": "^25.1.8",
