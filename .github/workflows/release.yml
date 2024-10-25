@@ -71,7 +71,7 @@ jobs:
           prerelease: false
 
       - name: List release directory files
-        run: ls -l dist
+        run: ls -l release
   
       - name: Set Clean Version
         run: echo "CLEAN_TAG=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
@@ -82,8 +82,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: "dist/eve_sync Setup ${{ env.CLEAN_TAG }}.exe"
-          asset_name: "eve_sync Setup ${{ env.CLEAN_TAG }}.exe"
+          asset_path: "release/eve_sync Setup ${{ env.CLEAN_TAG }}.exe"
+          asset_name: "EVE Sync v${{ env.CLEAN_TAG }}.exe"
           asset_content_type: application/x-msdownload
       
           
