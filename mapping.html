@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Map Characters to Accounts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="mapping.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+
+    <!-- Header Section with Help Tooltip and Navigation -->
+    <header class="header">
+        <div class="header-left">
+            <h1>Map Characters to Accounts</h1>
+            <!-- Help Tooltip next to h1 -->
+            <div class="help-icon-container">
+                <i class="fas fa-question-circle help-icon" tabindex="0" aria-label="Help" title="Help"></i>
+                <div class="help-tooltip">
+                    To make it easier to associate characters with accounts, the tiles below are color-coded by last modified date.
+                    If needed, log on/off all the characters on an account and reload this page.
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <button id="navigate-main" aria-label="Navigate to Home" title="Home">
+                <i class="fas fa-home"></i>
+            </button>
+            <button id="toggle-dark-mode" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
+
+    <!-- Containers for Users and Characters -->
+    <div class="container">
+        <div class="users-section">
+            <h2>Accounts</h2>
+            <div id="users-container" class="cards-container"></div>
+        </div>
+        <div class="characters-section">
+            <h2>Characters</h2>
+            <div id="characters-container" class="cards-container"></div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Custom JS -->
+    <script src="mapping.js"></script>
+</body>
+</html>

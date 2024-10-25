@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EVE Settings Sync - Main Page</title>
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="main.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto&display=swap" rel="stylesheet">
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+
+    <!-- Header Section with Help Tooltip and Dark Mode Toggle -->
+    <header class="header">
+        <div class="header-left">
+            <h1>EVE Settings Sync</h1>
+            <!-- Moved Help Tooltip next to h1 -->
+            <div class="help-icon-container">
+                <i class="fas fa-question-circle help-icon" tabindex="0" aria-label="Help" title="Help"></i>
+                <div class="help-tooltip">
+                    Use the selections below to either sync a single character/account across all other files in a subdirectory (launch profile), or use sync-all to overwrite all profiles with the selected account/character. The association page will help you map characters to accounts to avoid needing to manually select the account for the character you want to sync.
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <!-- Navigation Button Moved Next to Dark Mode Toggle -->
+            <button id="character-mapping-btn" aria-label="Character Mapping" title="Manage Character Mappings">
+                <i class="fas fa-users"></i>
+            </button>
+            <button id="toggle-dark-mode" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Top Buttons: Backup and Delete Backup -->
+    <div class="top-button-row" id="top-buttons" style="display: none;"> <!-- Hidden initially -->
+        <button id="backup-btn" aria-label="Backup Settings" title="Backup Settings">
+            <i class="fas fa-archive"></i>
+        </button>
+        <button id="delete-backup-btn" aria-label="Delete Backups" title="Delete All Backups">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
+
+    <!-- Subdirectory Tiles Container -->
+    <div class="settings-container">
+        <div id="subdirectories-container" class="cards-container">
+            <!-- Subdirectory cards will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Change Directory and Reset Buttons -->
+    <div class="change-directory-container">
+        <button id="choose-settings-dir" data-subdir="" aria-label="Choose Settings Directory" title="Choose Settings Directory">
+            <i class="fas fa-folder-open"></i>
+        </button>
+        <button id="reset-to-default-btn" aria-label="Reset to Default Directory" title="Reset to Default" style="display: block;"> 
+            <i class="fas fa-undo-alt"></i>
+        </button>
+    </div>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Your custom script -->
+    <script src="renderer.js"></script>
+</body>
+</html>

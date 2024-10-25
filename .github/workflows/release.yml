@@ -1,0 +1,98 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger only when a new tag is pushed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22.2.0'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Wine
+        run: |
+          sudo dpkg --add-architecture i386 
+          sudo apt-get update
+          sudo apt-get install -y wine32
+
+      - name: Clean up old build directories
+        run: |
+          rm -rf dist release
+          mkdir dist release
+
+      - name: Build Electron App
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run dist  
+
+      - name: Generate Changelog
+        id: changelog
+        run: |
+          if git describe --tags --abbrev=0 HEAD^ >/dev/null 2>&1; then
+            PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^)
+            CHANGELOG=$(git log $PREVIOUS_TAG..HEAD --oneline --pretty=format:"- %s")
+          else
+            echo "No previous tag found, generating initial changelog."
+            PREVIOUS_TAG="None"
+            CHANGELOG=$(git log --oneline --pretty=format:"- %s")
+          fi
+
+          echo "previous_tag=$PREVIOUS_TAG" >> $GITHUB_ENV
+          echo "changelog=$CHANGELOG" >> $GITHUB_ENV
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          body: ${{ env.changelog }}
+          draft: false
+          prerelease: false
+
+      - name: List release directory files
+        run: ls -l dist
+  
+      - name: Set Clean Version
+        run: echo "CLEAN_TAG=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
+      
+      - name: Upload Release Assets (Windows)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: "dist/eve_sync Setup ${{ env.CLEAN_TAG }}.exe"
+          asset_name: "eve_sync Setup ${{ env.CLEAN_TAG }}.exe"
+          asset_content_type: application/x-msdownload
+      
+          
+      # - name: Upload Release Assets (Linux)
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: release/canifly-${{ github.ref_name }}.AppImage
+      #     asset_name: canifly-${{ github.ref_name }}.AppImage
+      #     asset_content_type: application/octet-stream

@@ -1,0 +1,43 @@
+/* variables.css */
+
+/* Base Colors */
+:root {
+    --primary-color: #007bff;        /* Blue */
+    --secondary-color: #ff6f61;      /* Coral */
+    --highlight-blue: #17a2b8;       /* Light Blue */
+    --highlight-green: #28a745;      /* Green */
+    --error-color: #dc3545;          /* Red */
+    --background-color: #f8f9fa;     /* Light Background */
+    --text-color: #212529;           /* Dark Text */
+    --light-grey: #e9ecef;           /* Light Grey */
+    --border-color: #ced4da;         /* Border Grey */
+
+    /* Enhanced Colors for Cards */
+    --card-background-light: #ffffff; /* White */
+    --card-background-dark: #343a40;  /* Dark Grey */
+
+    /* Accent Colors */
+    --accent-color-light: rgba(23, 162, 184, 0.1); /* Light Blue */
+    --accent-color-dark: rgba(23, 162, 184, 0.2);  /* Darker Blue */
+}
+
+/* Dark Mode Base Colors */
+body.dark-mode {
+    --primary-color: #17a2b8;        /* Enhanced Blue */
+    --secondary-color: #ff6f61;      /* Coral */
+    --highlight-blue: #138496;       /* Darker Blue */
+    --highlight-green: #218838;      /* Darker Green */
+    --error-color: #e74c3c;          /* Darker Red */
+    --background-color: #212529;     /* Dark Background */
+    --text-color: #f8f9fa;           /* Light Text */
+    --light-grey: #495057;           /* Darker Grey */
+    --border-color: #6c757d;         /* Grey */
+
+    /* Enhanced Colors for Cards */
+    --card-background-light: #343a40; /* Dark Grey */
+    --card-background-dark: #1c1e21;  /* Even Darker Grey */
+
+    /* Accent Colors */
+    --accent-color-light: rgba(23, 162, 184, 0.2); /* Darker Blue */
+    --accent-color-dark: rgba(231, 76, 60, 0.2);    /* Light Red */
+}

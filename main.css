@@ -1,0 +1,468 @@
+/* main.css */
+
+@import url('variables.css');
+
+/* Global Styles */
+body {
+    font-family: 'Montserrat', 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Header Styles */
+header.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: var(--light-grey); /* Changed to light grey */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode header.header {
+    background-color: #495057;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+header.header h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 1.8em;
+    margin-right: 10px; /* Space between h1 and tooltip */
+}
+
+.help-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.help-tooltip {
+    font-size: 0.95em; /* Slightly larger font size */
+    line-height: 1.5;  /* Better readability */
+    width: 250px; /* Adjust width to prevent text overflow */
+    background-color: var(--card-background-light); /* Background color */
+    color: var(--text-color);
+    padding: 12px; /* Add padding for spacing */
+    border-radius: 6px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); /* Subtle shadow */
+    position: absolute;
+    z-index: 1;
+    top: 110%; /* Position it below the icon to avoid toolbar */
+    left: 0; /* Align the tooltip to the left of the icon */
+    transform: translateY(0); /* Remove vertical centering */
+    margin-top: 5px; /* Adds space between icon and tooltip */
+    visibility: hidden; /* Tooltip hidden by default */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.help-icon-container:hover .help-tooltip,
+.help-icon-container:focus .help-tooltip {
+    visibility: visible; /* Show tooltip on hover/focus */
+    opacity: 1; /* Make tooltip fully visible */
+}
+
+/* Dark mode styling */
+body.dark-mode .help-tooltip {
+    background-color: var(--card-background-dark);
+    color: var(--text-color);
+    border: 1px solid var(--border-color); /* Slight border in dark mode */
+}
+
+
+.help-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -5px;
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent var(--card-background-light) transparent transparent;
+}
+
+body.dark-mode .help-tooltip::after {
+    border-color: transparent var(--card-background-dark) transparent transparent;
+}
+
+/* Help Icon Styling */
+.help-icon {
+    font-size: 1.5em;
+    color: var(--primary-color); /* Restored original color */
+    cursor: pointer;
+}
+
+body.dark-mode .help-icon {
+    color: var(--primary-color); /* Restored original color */
+}
+
+/* Ensure buttons on the right are side by side */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between the buttons */
+}
+
+/* Restored original character mapping button color */
+#character-mapping-btn {
+    background-color: transparent;
+    color: var(--primary-color); /* Restored original color */
+    font-size: 1.5em;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.3s ease;
+}
+
+#character-mapping-btn:hover {
+    color: var(--secondary-color);
+}
+
+#character-mapping-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.5);
+}
+
+/* Dark Mode Toggle Button */
+#toggle-dark-mode {
+    background-color: transparent;
+    color: var(--primary-color);
+    font-size: 1.5em;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#toggle-dark-mode:hover {
+    color: var(--highlight-blue);
+}
+
+#toggle-dark-mode:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.5);
+}
+
+/* Button Styles */
+button {
+    background-color: var(--primary-color);
+    border: none; /* Remove default border */
+    border-radius: 50%; /* Make buttons circular */
+    padding: 12px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex; /* Enable flex for icon alignment */
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.5);
+}
+
+/* Specific Button Styles */
+#backup-btn {
+    background-color: var(--highlight-blue);
+}
+
+#backup-btn:hover {
+    background-color: var(--highlight-blue);
+}
+
+#delete-backup-btn {
+    background-color: var(--error-color);
+}
+
+#delete-backup-btn:hover {
+    background-color: #c82333;
+}
+
+/* Sync Buttons Differentiation */
+.sync-btn {
+    background-color: var(--primary-color);
+}
+
+.sync-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.sync-all-btn {
+    background-color: var(--error-color); /* Red color to differentiate */
+}
+
+.sync-all-btn:hover {
+    background-color: #c82333;
+}
+
+/* Centered Button Row */
+.top-button-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Change Directory and Reset Buttons */
+.change-directory-container {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.change-directory-container button {
+    background-color: var(--primary-color);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+}
+
+.change-directory-container button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.change-directory-container button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.5);
+}
+
+/* Tooltip for Change Directory Button */
+#choose-settings-dir[data-subdir]:hover::after,
+#choose-settings-dir[data-subdir]:focus::after {
+    content: attr(data-subdir);
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--card-background-light);
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 4px;
+    white-space: pre-wrap; /* Allows the tooltip to wrap text */
+    max-width: 300px; /* Limit the width */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 0.9em;
+    opacity: 1;
+    visibility: visible;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limits the tooltip to two lines */
+    -webkit-box-orient: vertical;
+}
+
+body.dark-mode #choose-settings-dir[data-subdir]:hover::after,
+body.dark-mode #choose-settings-dir[data-subdir]:focus::after {
+    background-color: var(--card-background-dark);
+    color: var (--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Hide the tooltip when data-subdir is empty */
+#choose-settings-dir[data-subdir=""]:hover::after,
+#choose-settings-dir[data-subdir=""]:focus::after {
+    content: '';
+    opacity: 0;
+    visibility: hidden;
+}
+
+.settings-container {
+    width: 100%;
+    max-width: 1200px;  /* Set a reasonable max-width for large screens */
+    margin: 0 auto;  /* Center the container */
+    display: flex;
+    justify-content: center;  /* Ensure the child elements (cards-container) are centered */
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;  /* Center vertically, if applicable */
+    flex-wrap: wrap;  /* Ensure cards wrap if there are too many */
+    gap: 15px;  /* Space between cards */
+    width: 100%;
+    max-width: 1200px;  /* Control max width for larger screens */
+    margin: 0 auto;  /* Center container horizontally */
+}
+
+
+.card.subdirectory {
+    background-color: var(--card-background-light);
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+body.dark-mode .card.subdirectory {
+    background-color: var(--card-background-dark);
+}
+
+.card.subdirectory:hover {
+    transform: translateY(-5px);
+}
+
+/* Dropdown Controls in Subdirectory Tiles */
+.controls select {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    width: 80%; /* Adjusted width for better alignment */
+    margin: 10px 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .controls select {
+    background-color: #495057;
+    color: #f8f9fa;
+    border-color: var(--border-color);
+}
+
+.controls select:focus {
+    outline: none;
+    border-color: var(--highlight-blue);
+    box-shadow: 0 0 0 2px rgba(23, 162, 184, 0.5);
+}
+
+/* Button Rows within Cards */
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    font-size: 2em;
+    color: var(--primary-color);
+    display: none; /* Hidden by default */
+}
+
+.loading-spinner.visible {
+    display: block;
+}
+
+/* Toastr Notification Positioning */
+.toast-top-right {
+    top: 15px;
+    right: 15px;
+    position: fixed;
+    z-index: 10000;
+    max-width: 300px;  /* Narrower width for better readability */
+    word-wrap: break-word; /* Ensure the text wraps properly */
+    white-space: normal; /* Allow line breaks */
+}
+
+/* Toastr Success, Error, Info Styling */
+.toast-success {
+    background-color: var(--highlight-green);
+    color: #fff;
+}
+
+.toast-error {
+    background-color: var(--error-color);
+    color: #fff;
+}
+
+.toast-info {
+    background-color: var(--highlight-blue);
+    color: #fff;
+}
+
+/* Remove Close Button from Toast */
+.toast-close-button {
+    display: none; /* Hide the close button */
+}
+
+/* Custom Toastr Styling */
+#toast-container > div {
+    border-radius: 8px;
+    padding: 15px 20px;
+    font-size: 1em;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .top-button-row {
+        flex-direction: column;
+    }
+
+    .top-button-row button {
+        width: 60px;
+        height: 60px;
+        margin: 10px 0;
+    }
+
+    .settings-container {
+        padding: 10px;
+    }
+
+    .card.subdirectory {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .change-directory-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* Header Icons Alignment on Smaller Screens */
+    .header-icons {
+        gap: 10px;
+    }
+}

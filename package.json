@@ -1,0 +1,45 @@
+{
+  "name": "eve_sync",
+  "version": "0.0.11",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-packager . electron-associate-app --platform=win32 --arch=x64 --out=dist --overwrite",
+    "dist": "electron-builder --win --x64",
+    "bump": "bash scripts/bump.sh"
+  },
+  "build": {
+    "appId": "com.github.gambtho.eve_sync",
+    "files": [
+      "main.js",
+      "static/**/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "forceCodeSigning": false,
+      "icon": "assets/icon/favicon.ico"
+    },
+    "directories": {
+      "output": "release",
+      "buildResources": "assets/icon"
+    }
+  },
+  "keywords": [],
+  "author": {
+    "name": "gambtho",
+    "email": "thomasgamble2@gmail.com"
+  },
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^33.0.1",
+    "electron-builder": "^25.1.8",
+    "electron-packager": "^17.1.2"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "electron-log": "^5.2.0",
+    "tar": "^7.4.3"
+  }
+}

@@ -1,0 +1,275 @@
+/* General Styles */
+body {
+    font-family: 'Montserrat', 'Roboto', sans-serif; /* Updated to match main.css */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Header Styles */
+.header {
+    background-color: var(--light-grey); /* Changed to light grey for consistency */
+    color: #fff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.header-left h1 {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    font-size: 1.8em;
+    color: var(--text-color);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+body.dark-mode .header-left h1 {
+    color: var(--text-color);
+}
+
+/* Header-right Button Styling (restores original layout) */
+.header-right {
+    display: flex;
+    gap: 10px; /* Ensures buttons are side by side */
+}
+
+.header-right button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.header-right button:hover {
+    color: var(--secondary-color);
+}
+
+/* Confirmation Dialog Buttons - Separate from General Button Styles */
+.confirm-dialog-btn {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    padding: 12px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.confirm-dialog-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.confirm-dialog-btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.confirm-dialog-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.5);
+}
+
+/* Tooltip Fix */
+.help-tooltip {
+    font-size: 0.95em;
+    line-height: 1.5;
+    width: 250px;
+    background-color: var(--card-background-light);
+    color: var(--text-color);
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    z-index: 1;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Dark mode styling */
+body.dark-mode .help-tooltip {
+    background-color: var(--card-background-dark);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.help-tooltip::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent var(--card-background-light) transparent;
+}
+
+body.dark-mode .help-tooltip::after {
+    border-color: transparent transparent var(--card-background-dark) transparent;
+}
+
+.help-icon-container:hover .help-tooltip,
+.help-icon-container:focus .help-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Help Icon Styling */
+.help-icon {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+body.dark-mode .help-icon {
+    color: var(--primary-color);
+}
+
+/* Container for Users and Characters */
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.users-section, .characters-section {
+    width: 45%;
+    min-width: 300px;
+}
+
+/* Section Headers */
+.users-section h2, .characters-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+/* Cards Container */
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* User and Character Cards */
+.card {
+    background-color: var(--card-background-light);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-left: 5px solid var(--primary-color);
+    transition: background-color 0.3s, border-left-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+body.dark-mode .card {
+    background-color: var(--card-background-dark);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+.card-header .last-updated {
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+
+/* Unassociate Button - Keep the original style */
+.unassociate-btn {
+    background: none;
+    border: none;
+    color: var(--error-color);
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.unassociate-btn:hover {
+    color: darkred;
+}
+
+/* Drag-and-Drop Visual Feedback */
+.drag-over {
+    border-left-color: var(--secondary-color);
+    background-color: var(--accent-color-light);
+}
+
+body.dark-mode .drag-over {
+    background-color: var(--accent-color-dark);
+}
+
+.dragging {
+    opacity: 0.5;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    font-size: 2em;
+    color: var(--primary-color);
+    display: none;
+}
+
+.loading-spinner.visible {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .users-section, .characters-section {
+        width: 100%;
+    }
+}
