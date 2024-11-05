@@ -10,6 +10,7 @@
   },
   "build": {
     "appId": "com.github.gambtho.eve_sync",
+    "productName": "Eve Sync",
     "files": [
       "main.js",
       "*.js",
